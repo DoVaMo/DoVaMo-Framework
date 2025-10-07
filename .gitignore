@@ -14,9 +14,9 @@ buildNumber.properties
 # Maven Wrapper JAR should be tracked; ignore only metadata
 .mvn/wrapper/maven-wrapper.properties
 
-# -------------------------
+# ----------------------
 # Eclipse-specific files
-# -------------------------
+# ----------------------
 .project
 .classpath
 .settings/
@@ -24,24 +24,29 @@ buildNumber.properties
 # Optional: Workspace-level Eclipse metadata
 *.launch
 
-# -------------------------
+# -----------------
 # OS-specific files
-# -------------------------
+# -----------------
 # macOS
 .DS_Store
 # Windows
 Thumbs.db
 
-# -------------------------
+# ------------------------
 # Logs and temporary files
-# -------------------------
+# ------------------------
 *.log
 *.tmp
 *.bak
 
-# -------------------------
+# --------------------------------
 # EMF-specific temporary artifacts
-# -------------------------
+# --------------------------------
 *.ecorediag
 *.genmodel~
 *.xmi~
+
+# --------------
+# Generated code
+# --------------
+**/src/test/gen/**
