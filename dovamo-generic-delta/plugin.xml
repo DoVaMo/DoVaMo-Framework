@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated genericDelta -->
+      <package
+            uri="https://tva.kastel.kit.edu/deltavar/core/genericDelta"
+            class="org.educsos.dovamo.genericDelta.GenericDeltaPackage"
+            genModel="src/main/resources/model/genericDelta.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated genericDelta -->
+      <package
+            uri="https://tva.kastel.kit.edu/deltavar/core/genericDelta/applicability"
+            class="org.educsos.dovamo.genericDelta.applicability.ApplicabilityPackage"
+            genModel="src/main/resources/model/genericDelta.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated genericDelta -->
+      <factory
+            uri="https://tva.kastel.kit.edu/deltavar/core/genericDelta"
+            class="org.educsos.dovamo.genericDelta.provider.GenericDeltaItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated genericDelta -->
+      <factory
+            uri="https://tva.kastel.kit.edu/deltavar/core/genericDelta/applicability"
+            class="org.educsos.dovamo.genericDelta.applicability.provider.ApplicabilityItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated genericDelta -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.educsos.dovamo.genericDelta.presentation.GenericDeltaModelWizardID"
+            name="%_UI_GenericDeltaModelWizard_label"
+            class="org.educsos.dovamo.genericDelta.presentation.GenericDeltaModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/GenericDeltaModelFile.gif">
+         <description>%_UI_GenericDeltaModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated genericDelta -->
+      <editor
+            id="org.educsos.dovamo.genericDelta.presentation.GenericDeltaEditorID"
+            name="%_UI_GenericDeltaEditor_label"
+            icon="icons/full/obj16/GenericDeltaModelFile.gif"
+            extensions="genericdelta"
+            class="org.educsos.dovamo.genericDelta.presentation.GenericDeltaEditor"
+            contributorClass="org.educsos.dovamo.genericDelta.presentation.GenericDeltaActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated genericDelta -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.educsos.dovamo.genericDelta.applicability.presentation.ApplicabilityModelWizardID"
+            name="%_UI_ApplicabilityModelWizard_label"
+            class="org.educsos.dovamo.genericDelta.applicability.presentation.ApplicabilityModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ApplicabilityModelFile.gif">
+         <description>%_UI_ApplicabilityModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated genericDelta -->
+      <editor
+            id="org.educsos.dovamo.genericDelta.applicability.presentation.ApplicabilityEditorID"
+            name="%_UI_ApplicabilityEditor_label"
+            icon="icons/full/obj16/ApplicabilityModelFile.gif"
+            extensions="applicability"
+            class="org.educsos.dovamo.genericDelta.applicability.presentation.ApplicabilityEditor"
+            contributorClass="org.educsos.dovamo.genericDelta.applicability.presentation.ApplicabilityActionBarContributor">
+      </editor>
+   </extension>
+</plugin>
