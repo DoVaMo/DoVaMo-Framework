@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="genericDelta" nsURI="https://tva.kastel.kit.edu/deltavar/core/genericDelta"
+    nsPrefix="genericDelta">
+  <eClassifiers xsi:type="ecore:EClass" name="DeltaOp" abstract="true" eSuperTypes="#//Identifier">
+    <eOperations name="apply"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Delta" eSuperTypes="#//Identifier">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deltaOperations" upperBound="-1"
+        eType="#//DeltaOp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="applicabilityCondition"
+        eType="#//applicability/Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="after" upperBound="-1"
+        eType="#//Delta"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MacroDeltaOp" abstract="true" eSuperTypes="#//DeltaOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AttDeltaOp" abstract="true" eSuperTypes="#//AtomicDeltaOp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modifiedAtt" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modifiedAttString" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RefDeltaOp" abstract="true" eSuperTypes="#//AtomicDeltaOp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modifiedRef" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modifiedRefString" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleRefDeltaOp" abstract="true" eSuperTypes="#//RefDeltaOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiRefDeltaOp" abstract="true" eSuperTypes="#//RefDeltaOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleAttDeltaOp" abstract="true" eSuperTypes="#//AttDeltaOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiAttDeltaOp" abstract="true" eSuperTypes="#//AttDeltaOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SetSingleAttDeltaOp" eSuperTypes="#//SingleAttDeltaOp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="newValue" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnsetSingleAttDeltaOp" eSuperTypes="#//SingleAttDeltaOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UnsetSingleRefDeltaOp" eSuperTypes="#//SingleRefDeltaOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SetSingleRefDeltaOp" eSuperTypes="#//SingleRefDeltaOp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="idOfNewValue" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InsertAtIndexMultiRefDeltaOp" eSuperTypes="#//AddByValueMultiRefDeltaOp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AddByValueMultiRefDeltaOp" eSuperTypes="#//AdditionMultiRefDeltaOp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="idOfAddedValue" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RemoveByValueMultiRefDeltaOp" eSuperTypes="#//RemovalMultiRefDeltaOp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="strategy" lowerBound="1"
+        eType="#//RemovalStrategy"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="idOfRemovedValue" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Identifier" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" ordered="false" unique="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        unsettable="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RemovalStrategy">
+    <eLiterals name="FIRST"/>
+    <eLiterals name="LAST" value="1"/>
+    <eLiterals name="ALL" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClearMultiRefDeltaOp" eSuperTypes="#//RemovalMultiRefDeltaOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DeleteByIndexMultiRefDeltaOp" eSuperTypes="#//RemovalMultiRefDeltaOp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReplaceAtRefMacro" eSuperTypes="#//PredefinedMacroDeltaOp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="delete" lowerBound="1"
+        eType="#//DeleteByIndexMultiRefDeltaOp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="insert" lowerBound="1"
+        eType="#//InsertAtIndexMultiRefDeltaOp" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeltaRepository" eSuperTypes="#//Identifier">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="delta" upperBound="-1"
+        eType="#//Delta" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AtomicDeltaOp" abstract="true" eSuperTypes="#//DeltaOp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="idOfAffectedObject" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MoveContained" eSuperTypes="#//PredefinedMacroDeltaOp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="remove" lowerBound="1"
+        eType="#//RemoveByValueMultiRefDeltaOp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="add" lowerBound="1" eType="#//AdditionMultiRefDeltaOp"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RemovalMultiRefDeltaOp" abstract="true"
+      eSuperTypes="#//MultiRefDeltaOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AdditionMultiRefDeltaOp" abstract="true"
+      eSuperTypes="#//MultiRefDeltaOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AdditionMultiAttDeltaOp" abstract="true"
+      eSuperTypes="#//MultiAttDeltaOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RemovalMultiAttDeltaOp" abstract="true"
+      eSuperTypes="#//MultiAttDeltaOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AddByValueMultiAttDeltaOp" eSuperTypes="#//AdditionMultiAttDeltaOp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="idOfAddedValue" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InsertAtIndexMultiAttDeltaOp" eSuperTypes="#//AddByValueMultiAttDeltaOp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeleteByIndexMultiAttDeltaOp" eSuperTypes="#//RemovalMultiAttDeltaOp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RemoveByValueMultiAttDeltaOp" eSuperTypes="#//RemovalMultiAttDeltaOp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="strategy" lowerBound="1"
+        eType="#//RemovalStrategy"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="idOfRemovedValue" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClearMultiAttDeltaOp" eSuperTypes="#//RemovalMultiAttDeltaOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ReplaceAtAttMacro" eSuperTypes="#//PredefinedMacroDeltaOp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="delete" lowerBound="1"
+        eType="#//DeleteByIndexMultiAttDeltaOp" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="insert" lowerBound="1"
+        eType="#//InsertAtIndexMultiAttDeltaOp" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PredefinedMacroDeltaOp" abstract="true"
+      eSuperTypes="#//MacroDeltaOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DialectMacroDeltaOp" abstract="true"
+      eSuperTypes="#//MacroDeltaOp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="body" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CreationMacroDeltaOp" abstract="true"
+      eSuperTypes="#//DialectMacroDeltaOp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InitializeRootObjectDeltaOp" eSuperTypes="#//DeltaOp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="idOfNewRoot" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rootType" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rootTypeString" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eSubpackages name="applicability" nsURI="https://tva.kastel.kit.edu/deltavar/core/genericDelta/applicability"
+      nsPrefix="applicability">
+    <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Literal" eSuperTypes="#//applicability/Expression">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureID" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AndExpression" eSuperTypes="#//applicability/Expression">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="operands" ordered="false"
+          lowerBound="2" upperBound="-1" eType="#//applicability/Expression" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OrExpression" eSuperTypes="#//applicability/Expression">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="operands" ordered="false"
+          lowerBound="2" upperBound="-1" eType="#//applicability/Expression" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NotExpression" eSuperTypes="#//applicability/Expression">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="operand" ordered="false"
+          lowerBound="1" eType="#//applicability/Expression" containment="true"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

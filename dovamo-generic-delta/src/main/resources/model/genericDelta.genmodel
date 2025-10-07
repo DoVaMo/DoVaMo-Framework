@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/dovamo-generic-delta/src/main/gen" editDirectory="/dovamo-generic-delta/src/eclipse/model.edit/src-gen/"
+    editorDirectory="/dovamo-generic-delta/src/eclipse/model.editor/src-gen/" modelPluginID="dovamo-generic-delta"
+    modelName="GenericDelta" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    testsDirectory="/dovamo-generic-delta/src/test/gen/model.test/" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>genericDelta.ecore</foreignModel>
+  <genPackages prefix="GenericDelta" basePackage="org.educsos.dovamo" disposableProviderFactory="true"
+      extensibleProviderFactory="true" childCreationExtenders="true" ecorePackage="genericDelta.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="genericDelta.ecore#//RemovalStrategy">
+      <genEnumLiterals ecoreEnumLiteral="genericDelta.ecore#//RemovalStrategy/FIRST"/>
+      <genEnumLiterals ecoreEnumLiteral="genericDelta.ecore#//RemovalStrategy/LAST"/>
+      <genEnumLiterals ecoreEnumLiteral="genericDelta.ecore#//RemovalStrategy/ALL"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="genericDelta.ecore#//DeltaOp">
+      <genOperations ecoreOperation="genericDelta.ecore#//DeltaOp/apply"/>
+    </genClasses>
+    <genClasses ecoreClass="genericDelta.ecore#//Delta">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericDelta.ecore#//Delta/deltaOperations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericDelta.ecore#//Delta/applicabilityCondition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genericDelta.ecore#//Delta/after"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="genericDelta.ecore#//MacroDeltaOp"/>
+    <genClasses image="false" ecoreClass="genericDelta.ecore#//AttDeltaOp">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genericDelta.ecore#//AttDeltaOp/modifiedAtt"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//AttDeltaOp/modifiedAttString"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="genericDelta.ecore#//RefDeltaOp">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genericDelta.ecore#//RefDeltaOp/modifiedRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//RefDeltaOp/modifiedRefString"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="genericDelta.ecore#//SingleRefDeltaOp"/>
+    <genClasses image="false" ecoreClass="genericDelta.ecore#//MultiRefDeltaOp"/>
+    <genClasses image="false" ecoreClass="genericDelta.ecore#//SingleAttDeltaOp"/>
+    <genClasses image="false" ecoreClass="genericDelta.ecore#//MultiAttDeltaOp"/>
+    <genClasses ecoreClass="genericDelta.ecore#//SetSingleAttDeltaOp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//SetSingleAttDeltaOp/newValue"/>
+    </genClasses>
+    <genClasses ecoreClass="genericDelta.ecore#//UnsetSingleAttDeltaOp"/>
+    <genClasses ecoreClass="genericDelta.ecore#//UnsetSingleRefDeltaOp"/>
+    <genClasses ecoreClass="genericDelta.ecore#//SetSingleRefDeltaOp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//SetSingleRefDeltaOp/idOfNewValue"/>
+    </genClasses>
+    <genClasses ecoreClass="genericDelta.ecore#//InsertAtIndexMultiRefDeltaOp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//InsertAtIndexMultiRefDeltaOp/position"/>
+    </genClasses>
+    <genClasses ecoreClass="genericDelta.ecore#//AddByValueMultiRefDeltaOp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//AddByValueMultiRefDeltaOp/idOfAddedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="genericDelta.ecore#//RemoveByValueMultiRefDeltaOp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//RemoveByValueMultiRefDeltaOp/strategy"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//RemoveByValueMultiRefDeltaOp/idOfRemovedValue"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="genericDelta.ecore#//Identifier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//Identifier/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//Identifier/name"/>
+    </genClasses>
+    <genClasses ecoreClass="genericDelta.ecore#//ClearMultiRefDeltaOp"/>
+    <genClasses ecoreClass="genericDelta.ecore#//DeleteByIndexMultiRefDeltaOp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//DeleteByIndexMultiRefDeltaOp/position"/>
+    </genClasses>
+    <genClasses ecoreClass="genericDelta.ecore#//ReplaceAtRefMacro">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericDelta.ecore#//ReplaceAtRefMacro/delete"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericDelta.ecore#//ReplaceAtRefMacro/insert"/>
+    </genClasses>
+    <genClasses ecoreClass="genericDelta.ecore#//DeltaRepository">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericDelta.ecore#//DeltaRepository/delta"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="genericDelta.ecore#//AtomicDeltaOp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//AtomicDeltaOp/idOfAffectedObject"/>
+    </genClasses>
+    <genClasses ecoreClass="genericDelta.ecore#//MoveContained">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericDelta.ecore#//MoveContained/remove"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericDelta.ecore#//MoveContained/add"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="genericDelta.ecore#//RemovalMultiRefDeltaOp"/>
+    <genClasses image="false" ecoreClass="genericDelta.ecore#//AdditionMultiRefDeltaOp"/>
+    <genClasses image="false" ecoreClass="genericDelta.ecore#//AdditionMultiAttDeltaOp"/>
+    <genClasses image="false" ecoreClass="genericDelta.ecore#//RemovalMultiAttDeltaOp"/>
+    <genClasses ecoreClass="genericDelta.ecore#//AddByValueMultiAttDeltaOp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//AddByValueMultiAttDeltaOp/idOfAddedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="genericDelta.ecore#//InsertAtIndexMultiAttDeltaOp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//InsertAtIndexMultiAttDeltaOp/position"/>
+    </genClasses>
+    <genClasses ecoreClass="genericDelta.ecore#//DeleteByIndexMultiAttDeltaOp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//DeleteByIndexMultiAttDeltaOp/position"/>
+    </genClasses>
+    <genClasses ecoreClass="genericDelta.ecore#//RemoveByValueMultiAttDeltaOp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//RemoveByValueMultiAttDeltaOp/strategy"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//RemoveByValueMultiAttDeltaOp/idOfRemovedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="genericDelta.ecore#//ClearMultiAttDeltaOp"/>
+    <genClasses ecoreClass="genericDelta.ecore#//ReplaceAtAttMacro">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericDelta.ecore#//ReplaceAtAttMacro/delete"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericDelta.ecore#//ReplaceAtAttMacro/insert"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="genericDelta.ecore#//PredefinedMacroDeltaOp"/>
+    <genClasses image="false" ecoreClass="genericDelta.ecore#//DialectMacroDeltaOp">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genericDelta.ecore#//DialectMacroDeltaOp/body"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="genericDelta.ecore#//CreationMacroDeltaOp"/>
+    <genClasses ecoreClass="genericDelta.ecore#//InitializeRootObjectDeltaOp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//InitializeRootObjectDeltaOp/idOfNewRoot"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//InitializeRootObjectDeltaOp/location"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genericDelta.ecore#//InitializeRootObjectDeltaOp/rootType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//InitializeRootObjectDeltaOp/rootTypeString"/>
+    </genClasses>
+    <nestedGenPackages prefix="Applicability" disposableProviderFactory="true" ecorePackage="genericDelta.ecore#//applicability">
+      <genClasses image="false" ecoreClass="genericDelta.ecore#//applicability/Expression"/>
+      <genClasses ecoreClass="genericDelta.ecore#//applicability/Literal">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericDelta.ecore#//applicability/Literal/featureID"/>
+      </genClasses>
+      <genClasses ecoreClass="genericDelta.ecore#//applicability/AndExpression">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericDelta.ecore#//applicability/AndExpression/operands"/>
+      </genClasses>
+      <genClasses ecoreClass="genericDelta.ecore#//applicability/OrExpression">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericDelta.ecore#//applicability/OrExpression/operands"/>
+      </genClasses>
+      <genClasses ecoreClass="genericDelta.ecore#//applicability/NotExpression">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericDelta.ecore#//applicability/NotExpression/operand"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>
