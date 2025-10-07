@@ -1,3 +1,6 @@
+# -------------------------
+# Maven build files
+# -------------------------
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -7,11 +10,38 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
-# https://maven.apache.org/wrapper/#usage-without-binary-jar
-.mvn/wrapper/maven-wrapper.jar
 
-# Eclipse m2e generated files
-# Eclipse Core
+# Maven Wrapper JAR should be tracked; ignore only metadata
+.mvn/wrapper/maven-wrapper.properties
+
+# -------------------------
+# Eclipse-specific files
+# -------------------------
 .project
-# JDT-specific (Eclipse Java Development Tools)
 .classpath
+.settings/
+
+# Optional: Workspace-level Eclipse metadata
+*.launch
+
+# -------------------------
+# OS-specific files
+# -------------------------
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
+
+# -------------------------
+# Logs and temporary files
+# -------------------------
+*.log
+*.tmp
+*.bak
+
+# -------------------------
+# EMF-specific temporary artifacts
+# -------------------------
+*.ecorediag
+*.genmodel~
+*.xmi~
