@@ -19,7 +19,7 @@
 
 For detailed diagrams and an overview of the system architecture, see:
 
-➡️ [**DOVAMO Architecture Overview**](./docs/architecture.md)
+➡️ [**DoVaMo Architecture Overview**](./docs/architecture.md)
 
 
 ## 🏗️ Project Structure
@@ -101,7 +101,7 @@ See [`LICENSE`](./LICENSE) for details.
 
 ## 👥 Maintainers
 
-**DOVAMO Team**
+**DoVaMo Team**
 A collaboration between the **TVA KASTEL** research group at the **Karlsruhe Institute of Technology (KIT)**
 and the **CDL VaSiCS** laboratory at the **Johannes Kepler University Linz (JKU)**.
 
