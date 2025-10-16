@@ -1,4 +1,4 @@
-# 🧩 DoVaMo – *Delta-Oriented Variability Modeling*
+# DoVaMo – *Delta-Oriented Variability Modeling*
 
 [![Java](https://img.shields.io/badge/Java-25%2B-orange)]()
 [![Maven](https://img.shields.io/badge/Maven-3.8%2B-red)]()
