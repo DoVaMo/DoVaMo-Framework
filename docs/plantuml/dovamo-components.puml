@@ -1,0 +1,48 @@
+@startuml DOVAMO_Component_Architecture
+title DoVaMo – Component Architecture Overview
+
+package "DoVaMo Framework" {
+
+  [dovamo-delta] as DeltaCore
+  [dovamo-delta-consistency-check] as Check
+  [dovamo-delta-algebra] as Algebra
+  [dovamo-feature] as Feature
+
+  package "Generators" {
+    [dovamo-gen-dialect] as GenDialect
+    [dovamo-gen-project] as GenProject
+    [dovamo-gen-grammar] as GenGrammar
+    [dovamo-gen-editor] as GenEditor
+  }
+
+  package "Interfaces" {
+    [dovamo-cli] as CLI
+    [dovamo-web] as Web
+  }
+}
+
+' Relationships between components
+CLI --> GenProject
+Web --> GenProject
+GenProject --> GenDialect
+GenDialect --> GenGrammar
+GenGrammar --> GenEditor
+
+GenEditor --> DeltaCore
+DeltaCore --> Check
+DeltaCore --> Algebra
+DeltaCore --> Feature
+
+Feature --> DeltaCore : "feature mapping \n / constraints"
+
+' External dependencies
+rectangle "Eclipse Platform" as Eclipse {
+  [EMF]
+  [Xtext]
+  [Sirius]
+}
+Eclipse -[#gray]-> GenGrammar
+Eclipse -[#gray]-> GenEditor
+Eclipse -[#gray]-> GenProject
+
+@enduml

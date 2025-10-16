@@ -1,0 +1,32 @@
+@startuml DOVAMO_Delta_Workflow
+title DoVaMo – Delta Generation and Validation Sequence
+
+actor User
+participant "CLI / Web\n(dovamo-cli / dovamo-web)" as UI
+participant "Project Generator\n(dovamo-gen-project)" as GenProject
+participant "Dialect Generator\n(dovamo-gen-dialect)" as GenDialect
+participant "Grammar Generator\n(dovamo-gen-grammar)" as GenGrammar
+participant "Editor Generator\n(dovamo-gen-editor)" as GenEditor
+participant "Delta Core\n(dovamo-delta)" as DeltaCore
+participant "Consistency Check\n(dovamo-delta-consistency-check)" as Check
+participant "Delta Algebra\n(dovamo-delta-algebra)" as Algebra
+participant "Feature Integration\n(dovamo-feature)" as Feature
+
+User -> UI : initiate delta modeling\n(e.g. "generate domain deltas")
+UI -> GenProject : generate delta project\n(domain.ecore)
+GenProject -> GenDialect : derive delta metamodel\n(delta_domain.ecore)
+GenDialect -> GenGrammar : create delta grammar\n(delta_domain.xtext)
+GenGrammar -> GenEditor : generate graphical editor\n(delta_domain.sirius)
+GenEditor -> DeltaCore : instantiate delta model
+DeltaCore -> Check : validate delta consistency
+Check --> DeltaCore : validation result (OK / errors)
+
+DeltaCore -> Algebra : apply algebraic ops\n (negation, rebasing, refactoring)
+Algebra --> DeltaCore : transformed delta set
+
+DeltaCore -> Feature : update feature mappings\n and implicit constraints
+Feature --> UI : modeling result and report
+
+UI --> User : display generated deltas and validation summary
+
+@enduml
