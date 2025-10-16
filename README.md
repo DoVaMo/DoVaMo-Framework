@@ -70,7 +70,6 @@ Each submodule provides specific functionality for working with *delta metamodel
 - 🔗 **UVL Integration** – Seamless connection to the [Universal Variability Language (UVL)](https://github.com/Universal-Variability-Language) for interoperable variability modeling.
 - 🔄 **CI/CD Pipeline** – Automated validation and delta-generation pipeline for continuous integration environments.
 - 🧩 **Cross-domain Mapping** – Expand delta synchronization across multiple modeling domains.
-- 📦 **Plug-in Marketplace Integration** – Make DoVaMo modules available via Eclipse/VSCode extensions.
 
 ---
 
