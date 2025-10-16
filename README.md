@@ -121,6 +121,6 @@ focusing on model-driven engineering, variability management, and delta-oriented
 ---
 
 > For general inquiries or collaboration opportunities, please contact
-> **[tva.kastel.kit.edu](https://www.kastel.kit.edu/)** or **[cdl.jku.at/vasics](https://cdl.jku.at/vasics/)**.
+> **[tva.kastel.kit.edu](https://tva.kastel.kit.edu/)** or **[jku.at/cdl-vasics/](https://www.jku.at/cdl-vasics/)**.
 
 ---
