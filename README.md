@@ -13,6 +13,15 @@
 
 ---
 
+---
+
+## 📘 Documentation
+
+For detailed diagrams and an overview of the system architecture, see:
+
+➡️ [**DOVAMO Architecture Overview**](./docs/architecture.md)
+
+
 ## 🏗️ Project Structure
 
 DoVaMo is organized as a **multi-module Maven/Eclipse project**.
