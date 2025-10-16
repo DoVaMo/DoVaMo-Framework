@@ -115,7 +115,7 @@ focusing on model-driven engineering, variability management, and delta-oriented
 | Name | Affiliation | Role |
 |------|--------------|------|
 | Dirk Neumann | KIT – TVA KASTEL | Core Developer / Tooling |
-| Malte Grave | JKU – CDL VaSiCS | Core Developer / Grammer generation and Delta Consistency |
+| Malte Grave | JKU – CDL VaSiCS | Core Developer / Grammar generation and Delta Consistency |
 
 
 ---
