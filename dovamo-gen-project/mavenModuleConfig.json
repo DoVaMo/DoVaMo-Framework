@@ -1,0 +1,9 @@
+{
+	"mavenProjectPath": "../ExampleMavenProject",
+	"newModuleName": "GeneratedMavenModule",
+	"newModuleArtifactId": "GeneratedMavenModule",
+	"packaging" : "jar",
+	"modelDirectory": "src/main/resources/model",
+	"modelName": "ecoreModelingProjectTemplate",
+	"modelOriginDirectory": "../EcoreModelingProjectTemplate/model"
+}
