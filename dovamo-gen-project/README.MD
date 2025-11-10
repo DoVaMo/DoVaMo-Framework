@@ -6,21 +6,21 @@ The creation of EMF Modelling Projects is implemented in the class [`EMFProjectG
 For creating a project, the method `createEMFProject` is called with an [`EMFProjectConfig`](./src/main/java/emfProjectGeneration/EMFProjectConfig.java).
 This config can be read from a config JSON with the `readEMFProjectConfigFile` method. 
 An example of such a file can be found [here](./emfProjectConfig.json).
-The create method creates a new folder at the specified location with the given name and then adds predefined files like the .classpath or the MANIFEST.MF file. Then, a .ecore metamodel is copied into the model folder from another specified location.
+The create method creates a new folder at the specified location with the given name and then adds predefined files like the .classpath or the MANIFEST.MF file. Then, an ecore metamodel is copied into the model folder from another specified location.
 
 ## Maven Module Project Generation
 The creation of Maven Modules is implemented in the class [`MavenModuleGenerator`](./src/main/java/mavenModuleGeneration/MavenModuleGenerator.java).
 For creating a project, the method `createMavenModule` is called with a [`MavenModuleConfig`](./src/main/java/mavenModuleGeneration/MavenModuleConfig.java).
 This config can be read from a config JSON with the `readMavenModuleConfigFile` method.
 An example of such a file can be found [here](./mavenModuleConfig.json).
-The create method creates a new maven module in the predefined maven project at the specified location with the given name and then adds predefined files like the pom.xml and directories like src. Then, a .ecore metamodel is copied into the model folder from another specified location and the pom.xml of the parent maven project is modified.
+The create method creates a new maven module in the predefined maven project at the specified location with the given name and then adds predefined files like the pom.xml and directories like src. Then, an ecore metamodel is copied into the model folder from another specified location and the pom.xml of the parent maven project is modified.
 
 ## GenModel Generation
 The creation of GenModels is implemented in the class [`GenModelGenerator`](./src/main/java/genModelGeneration/GenModelGenerator.java)
 For creating a genmodel the method `createGenModel` is called with a [`GenModelConfig`](./src/main/java/genModelGeneration/GenModelConfig.java).
 This config can be read from a config JSON with the `readGenModelConfigFile` method.
 An example of such a file can be found [here](./emfProjectGenModelConfig.json).
-The create method first resolves the .ecore metamodel at the given path. Then, the EPackage of the metamodel is loaded and a basic genmodel is created for this EPackage. Afterwards, the generated GenModel object is further configured, which is described in the following:
+The create method first resolves the ecore metamodel at the given path. Then, the EPackage of the metamodel is loaded and a basic genmodel is created for this EPackage. Afterwards, the generated GenModel object is further configured, which is described in the following:
 
 #### Directory of the model, edit, editor and test code  
 These directories are set via the setter functions of the genmodel object to the values given in the config file. Also, the plugin IDs for the 4 components are set to the values given in the config file. Since they need to be identical to the name of the project containing the folder in which the code is created, the values of the plugin ID need to match the paths specified in the config.
