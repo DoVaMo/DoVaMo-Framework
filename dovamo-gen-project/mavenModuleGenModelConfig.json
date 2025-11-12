@@ -1,0 +1,23 @@
+{
+	"pathToModelFolderFromGeneratingProject": "../ExampleMavenProject/GeneratedMavenModule/src/main/resources/model",
+	"localModelPath": "GeneratedMavenModule/src/main/resources/model",
+	"modelName": "ecoreModelingProjectTemplate",
+	"modelCodeDirectory": "/GeneratedMavenModule/src/gen/model",
+	"testCodeDirectory": "/GeneratedMavenModule/src/gen/model.test",
+	"editCodeDirectory": "/GeneratedMavenModule/src/gen/model.edit",
+	"editorCodeDirectory": "/GeneratedMavenModule/src/gen/model.editor",
+	"modelPluginID": "GeneratedMavenModule",
+	"testsPluginID": "GeneratedMavenModule",
+	"editPluginID": "GeneratedMavenModule",
+	"editorPluginID": "GeneratedMavenModule",
+	"activateExtensibilityFeatures": true,
+	"excludedGenPackagesPaths": ["../../../../../AnimalMetamodel/src/main/resources/model/animal.genmodel#//animal"],
+	"predefinedBodies": [
+		{
+			"packageName": "ecoreModelingProjectTemplate", 
+			"className": "AnimalFeeder",
+			"methodName":  "checkOnAnimal",
+			"body":  "feedAnimal();"
+		}
+	]
+}

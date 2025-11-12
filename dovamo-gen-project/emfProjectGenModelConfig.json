@@ -1,0 +1,23 @@
+{
+	"pathToModelFolderFromGeneratingProject": "../GeneratedModelingProject/model",
+	"localModelPath": "GeneratedModelingProject/model",
+	"modelName": "ecoreModelingProjectTemplate",
+	"modelCodeDirectory": "/GeneratedModelingProject/src-gen",
+	"testCodeDirectory": "/GeneratedModelingProject.tests/src",
+	"editCodeDirectory": "/GeneratedModelingProject.edit/src",
+	"editorCodeDirectory": "/GeneratedModelingProject.editor/src",
+	"modelPluginID": "GeneratedModelingProject",
+	"testsPluginID": "GeneratedModelingProject.tests",
+	"editPluginID": "GeneratedModelingProject.edit",
+	"editorPluginID": "GeneratedModelingProject.editor",
+	"activateExtensibilityFeatures": true,
+	"excludedGenPackagesPaths": ["../../AnimalMetamodel/src/main/resources/model/animal.genmodel#//animal"],
+	"predefinedBodies": [
+		{
+			"packageName": "ecoreModelingProjectTemplate", 
+			"className": "AnimalFeeder",
+			"methodName":  "checkOnAnimal",
+			"body":  "feedAnimal();"
+		}
+	]
+}
