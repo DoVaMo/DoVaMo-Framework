@@ -1,0 +1,10 @@
+{       
+	"pathToModelFolderFromGeneratingProject": "",
+	"pathOfModelingProject": "",
+	"modelPluginID": "",
+	"modelName": "",
+	"generateModelCode": true,
+	"generateEditCode": false,
+	"generateEditorCode": false,
+	"generateTestCode": false
+}
