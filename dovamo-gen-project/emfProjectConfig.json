@@ -1,5 +1,6 @@
 {
-	"projectName": "GeneratedModelingProject", 
+	"projectName": "GeneratedModelingProject",
+	"projectPath": "../GreenField/ExampleTestProjects"
 	"modelPath": "../GreenField/ExampleTestProjects/EcoreModelingProjectTemplate/model", 
 	"modelName": "ecoreModelingProjectTemplate"
 }

@@ -8,7 +8,10 @@ public record EMFProjectConfig(
 		 * The name of the project that should be created
 		 */
 		String projectName, 
-		
+		/**
+		 * The path of the directory into which the project should be created
+		 */
+		String projectPath,
 		/**
 		 * The path to the ecore model that should be copied into the newly created project
 		 */

@@ -37,7 +37,7 @@ public class EMFProjectGenerator {
 		System.out.println("Config: " + config.toString());
 		
 		//The import of the existing model could be solved better
-		Path rootDir = Paths.get("../", config.projectName());
+		Path rootDir = Paths.get(config.projectPath(), config.projectName());
 		Path modelPath = Paths.get(config.modelPath());
 		Files.createDirectories(rootDir);
 
