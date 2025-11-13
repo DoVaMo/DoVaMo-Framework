@@ -5,11 +5,11 @@ package codeGeneration;
  */
 public record CodeGenerationConfig(
 		/**
-		 * The relative path of the model folder as seen from the generating file
+		 * The relative path of the model folder as seen from the generation project
 		 */
 		String pathToModelFolderFromGeneratingProject,
 		/**
-		 * Absolute path of the modeling project
+		 * The path of the of the model folder that contains the genmodel (can be absolute or relative to the generation project)
 		 */
 		String pathOfModelingProject,
 		/**

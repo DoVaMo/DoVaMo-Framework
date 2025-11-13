@@ -1,5 +1,5 @@
 {
-	"pathToModelFolderFromGeneratingProject": "../GeneratedModelingProject/model",
+	"pathToModelFolderFromGeneratingProject": "../GreenField/ExampleTestProjects/GeneratedModelingProject/model",
 	"localModelPath": "GeneratedModelingProject/model",
 	"modelName": "ecoreModelingProjectTemplate",
 	"modelCodeDirectory": "/GeneratedModelingProject/src-gen",
@@ -11,7 +11,7 @@
 	"editPluginID": "GeneratedModelingProject.edit",
 	"editorPluginID": "GeneratedModelingProject.editor",
 	"activateExtensibilityFeatures": true,
-	"excludedGenPackagesPaths": ["../../AnimalMetamodel/src/main/resources/model/animal.genmodel#//animal"],
+	"excludedGenPackagesPaths": ["../GreenField/ExampleTestProjects/AnimalMetamodel/src/main/resources/model/animal.genmodel#//animal"],
 	"predefinedBodies": [
 		{
 			"packageName": "ecoreModelingProjectTemplate", 

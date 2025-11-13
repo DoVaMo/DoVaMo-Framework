@@ -1,8 +1,8 @@
 {       
-	"pathToModelFolderFromGeneratingProject": "",
-	"pathOfModelingProject": "",
-	"modelPluginID": "",
-	"modelName": "",
+	"pathToModelFolderFromGeneratingProject": "../GeneratedModelingProject/model",
+	"pathOfModelingProject": "../GeneratedModelingProject/",
+	"modelPluginID": "GeneratedModelingProject",
+	"modelName": "ecoreModelingProjectTemplate",
 	"generateModelCode": true,
 	"generateEditCode": false,
 	"generateEditorCode": false,

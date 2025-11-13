@@ -1,5 +1,5 @@
 {
-	"pathToModelFolderFromGeneratingProject": "../ExampleMavenProject/GeneratedMavenModule/src/main/resources/model",
+	"pathToModelFolderFromGeneratingProject": "../GreenField/ExampleTestProjects/ExampleMavenProject/GeneratedMavenModule/src/main/resources/model",
 	"localModelPath": "GeneratedMavenModule/src/main/resources/model",
 	"modelName": "ecoreModelingProjectTemplate",
 	"modelCodeDirectory": "/GeneratedMavenModule/src/gen/model",
@@ -11,7 +11,7 @@
 	"editPluginID": "GeneratedMavenModule",
 	"editorPluginID": "GeneratedMavenModule",
 	"activateExtensibilityFeatures": true,
-	"excludedGenPackagesPaths": ["../../../../../AnimalMetamodel/src/main/resources/model/animal.genmodel#//animal"],
+	"excludedGenPackagesPaths": ["../../../../GreenField/ExampleTestProjects/AnimalMetamodel/src/main/resources/model/animal.genmodel#//animal"],
 	"predefinedBodies": [
 		{
 			"packageName": "ecoreModelingProjectTemplate", 
