@@ -6,5 +6,10 @@
 	"generateModelCode": true,
 	"generateEditCode": false,
 	"generateEditorCode": false,
-	"generateTestCode": false
+	"generateTestCode": false,
+	"usedGenPackages": [{
+		"modelName": "animal",
+		"pathToModelFolderFromGenModel": "../../AnimalMetamodel/src/main/resources/model",
+		"pathToModelFolderFromGeneratorProject": "../../MavenParent/AnimalMetamodel/src/main/resources/model"
+	}]
 }

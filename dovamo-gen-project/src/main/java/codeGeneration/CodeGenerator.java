@@ -4,15 +4,19 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+
 import org.eclipse.emf.codegen.ecore.generator.Generator;
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -35,6 +39,48 @@ public class CodeGenerator {
 		String fileContent = Files.readString(pathToConfigFile);
 		Gson gson = new Gson();
 		return gson.fromJson(fileContent, CodeGenerationConfig.class);
+	}
+	
+	/**
+	 * Preloads genmodels and ecore models into a resourceSet so they can be resolved correctly later.
+	 * If there are any used GenPackages in the genmodel for which code should be generated, they need to be preloaded 
+	 * 
+	 * @param resourceSet the resourceSet that will be used to load the main genmodel
+	 * @param pathToGeneratingGenModel the path relative to the this file
+	 * @param modelFolderPaths the paths of the model folder containing the genmodels that contain the usedGenPackages
+	 */
+	private static void preloadUsedGenModels(ResourceSetImpl resourceSet, String pathToGeneratingGenModel, List<UsedGenPackageData> usedGenPackages) {
+		/*
+		 * Because the generator can sometimes not resolve the GenPackages with the paths specified in the genmodel,
+		 * the genmodels the contain the usedGenPackages and their respective ecore models need to be loaded in the same resourceSet.
+		 */
+		for (UsedGenPackageData usedGenPackage : usedGenPackages) {
+			//Load the ecore model
+			String correctModelPath = Paths.get(usedGenPackage.pathToModelFolderFromGeneratorProject(), usedGenPackage.modelName() + ".ecore").toAbsolutePath().normalize().toString();
+			System.out.println("Correct Path to genModel:" + correctModelPath);
+			URI correctModelURI = URI.createFileURI(correctModelPath);
+			System.out.println(correctModelURI.toFileString());
+			
+			//The path as seen from the genmodel
+			String genModelPathToModel = Paths.get(pathToGeneratingGenModel, usedGenPackage.pathToModelFolderFromGenModel(), usedGenPackage.modelName() + ".ecore").toAbsolutePath().normalize().toString();
+			System.out.println("Genmodel path: " + genModelPathToModel);
+			URI genModelURIForModel = URI.createFileURI(genModelPathToModel);
+			
+			resourceSet.getURIConverter().getURIMap().put(genModelURIForModel, correctModelURI);
+			resourceSet.getResource(correctModelURI, true);
+			
+			//Load the genmodel
+			String correctGenModelPath = Paths.get(usedGenPackage.pathToModelFolderFromGeneratorProject(), usedGenPackage.modelName() + ".genmodel").toAbsolutePath().normalize().toString();
+			URI correctGenModelURI = URI.createFileURI(correctGenModelPath);
+			
+			//The path as seen from the genmodel
+			String genModelPathToGenModel = Paths.get(pathToGeneratingGenModel, usedGenPackage.pathToModelFolderFromGenModel(), usedGenPackage.modelName() + ".genmodel").toAbsolutePath().normalize().toString();
+			URI genModelURIForGenModel = URI.createFileURI(genModelPathToGenModel);
+			
+			resourceSet.getURIConverter().getURIMap().put(genModelURIForGenModel, correctGenModelURI);
+			resourceSet.getResource(correctGenModelURI, true);
+		}
+		
 	}
 	
 	/**
@@ -69,6 +115,36 @@ public class CodeGenerator {
 		// Add a plain file URI handler
 		resourceSet.getURIConverter().getURIHandlers().add(new org.eclipse.emf.ecore.resource.impl.URIHandlerImpl());
 		
+		//--- Try fix --
+		preloadUsedGenModels(resourceSet, config.pathToModelFolderFromGeneratingProject(), config.usedGenPackages());
+		/*URI correctAnimalGenModelUri = URI.createFileURI(
+				"D:/projects/HiWiTVA/greenfield/MavenParent/AnimalMetamodel/src/main/resources/model/animal.genmodel"
+			);
+		URI modelGenModelURI = URI.createFileURI("D:/projects/HiWiTVA/greenfield/EcoreProjectCreation/AnimalMetamodel/src/main/resources/model/animal.genmodel");
+		
+		resourceSet.getURIConverter().getURIMap().put(
+		    modelGenModelURI,
+		    correctAnimalGenModelUri
+		);
+
+		// preload the referenced genmodel so the proxy resolves immediately
+		resourceSet.getResource(correctAnimalGenModelUri, true);
+		
+		// Add a plain file URI handler
+		resourceSet.getURIConverter().getURIHandlers().add(new org.eclipse.emf.ecore.resource.impl.URIHandlerImpl());
+		
+		URI correctAnimalModelUri = URI.createFileURI(
+				"D:/projects/HiWiTVA/greenfield/MavenParent/AnimalMetamodel/src/main/resources/model/animal.ecore"
+			);
+		URI modelURI = URI.createFileURI("D:/projects/HiWiTVA/greenfield/EcoreProjectCreation/AnimalMetamodel/src/main/resources/model/animal.ecore");
+		
+		resourceSet.getURIConverter().getURIMap().put(
+		    modelURI,
+		    correctAnimalModelUri
+		);*/
+		
+		//--- end try ---
+
 		URI ecoreUri = URI.createFileURI(absolutePathToModelFolder + "/" + config.modelName() + ".ecore");
 		resourceSet.getResource(ecoreUri, true);
 		
@@ -90,11 +166,31 @@ public class CodeGenerator {
 		Resource genModelResource = resourceSet.getResource(genModelUri, true);
 		GenModel genModel = (GenModel) genModelResource.getContents().get(0);
 		
+		for (GenPackage gp : genModel.getUsedGenPackages()) {
+		    System.out.println("UsedGenPackage: " + gp.getNSURI());
+		    System.out.println("  isProxy: " + gp.eIsProxy());
+		    if (gp.eIsProxy()) {
+		        System.out.println("  Proxy URI: " + ((InternalEObject) gp).eProxyURI());
+		    } else {
+		        System.out.println("  GenModel: " + (gp.getGenModel() != null ? gp.getGenModel().eResource().getURI() : "null"));
+		    }
+		}
+		
 		EcoreUtil.resolveAll(genModel);
 		
 		//Configure genModel
 		genModel.reconcile();
 		genModel.setCanGenerate(true);
+		
+		for (GenPackage gp : genModel.getUsedGenPackages()) {
+		    System.out.println("UsedGenPackage: " + gp.getNSURI());
+		    System.out.println("  isProxy: " + gp.eIsProxy());
+		    if (gp.eIsProxy()) {
+		        System.out.println("  Proxy URI: " + ((InternalEObject) gp).eProxyURI());
+		    } else {
+		        System.out.println("  GenModel: " + (gp.getGenModel() != null ? gp.getGenModel().eResource().getURI() : "null"));
+		    }
+		}
 		
 		//Generate code
 		Generator generator = new Generator();

@@ -1,5 +1,7 @@
 package codeGeneration;
 
+import java.util.List;
+
 /**
  * Record storing data that configures the code generation.
  */
@@ -35,5 +37,10 @@ public record CodeGenerationConfig(
 		/**
 		 * Boolean indicating if the test code should be generated
 		 */
-		Boolean generateTestCode
+		Boolean generateTestCode,
+		/**
+		 * The paths of the genmodels that contain GenPackages that should be excluded from generation.
+		 * These paths should be given relative to the genmodel for which the code should be generated (i.e., the paths that are specified in the genmodel that should be executed) 
+		 */
+		List<UsedGenPackageData> usedGenPackages
 ) {}
