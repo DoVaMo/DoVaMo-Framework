@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import codeGeneration.CodeGenerationConfig;
 import codeGeneration.CodeGenerator;
@@ -18,29 +19,14 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		boolean createEMFProject = true;
 		boolean createMavenModule = false;
-		boolean generateEMFCode = true;
-		boolean generateMavenCode = false;
+		boolean generateCode = true;
 		
 		if (createEMFProject) {
 			try {
 				EMFProjectGenerator.createEMFProject(EMFProjectGenerator.readEMFProjectConfigFile(Paths.get("./emfProjectConfig.json")));
 				
 				GenModelConfig genModelConfig = GenModelGenerator.readGenModelConfigFile(Paths.get("./emfProjectGenModelConfig.json"));
-				GenModelGenerator.createGenModel(genModelConfig);
-					
-				/*
-				 * The pathToModelFolderFromGeneratingProject is the relative path to the project, therefore its format is similar to ../[...]/ProjectName/[...]/model
-				 * Also the modelPluginID is ProjectName
-				 * We can therefore get the path to the project by retrieving ../[...]/ProjectName
-				 */
-				int index = genModelConfig.pathToModelFolderFromGeneratingProject().indexOf(genModelConfig.modelPluginID());
-				String substring = genModelConfig.pathToModelFolderFromGeneratingProject().substring(0, index - 1);
-				String localPathToProject = substring.concat("/" + genModelConfig.modelPluginID());
-				String absolutePathToProject = Paths.get(localPathToProject).toAbsolutePath().toString();
-				if (generateEMFCode) {
-					CodeGenerator.generateCode(new CodeGenerationConfig(genModelConfig.pathToModelFolderFromGeneratingProject(), absolutePathToProject, genModelConfig.modelPluginID(), genModelConfig.modelName(), true, false, false, false));
-				}
-				
+				GenModelGenerator.createGenModel(genModelConfig);		
 			} catch (IOException e) {
 				System.out.println("Unable to generate EMF project");
 				e.printStackTrace();
@@ -65,7 +51,8 @@ public class Main {
 			}	
 		}
 		
-		if (generateMavenCode) {
+		//This currently generates code for the generated EMF project
+		if (generateCode) {
 			try {
 				CodeGenerator.generateCode(CodeGenerator.readCodeGenerationConfigFile(Paths.get("./codeGenerationConfig.json")));
 			} catch (IOException e) {

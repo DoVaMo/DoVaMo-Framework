@@ -112,38 +112,11 @@ public class CodeGenerator {
 		//The absolute path of the model folder of the project for which the code should be created
 		String absolutePathToModelFolder = Paths.get(config.pathToModelFolderFromGeneratingProject()).toAbsolutePath().toString();
 		
-		// Add a plain file URI handler
+		//Add a plain file URI handler
 		resourceSet.getURIConverter().getURIHandlers().add(new org.eclipse.emf.ecore.resource.impl.URIHandlerImpl());
 		
-		//--- Try fix --
+		//Preload the used genModels so that the referenced GenPackages are resolved correctly 
 		preloadUsedGenModels(resourceSet, config.pathToModelFolderFromGeneratingProject(), config.usedGenPackages());
-		/*URI correctAnimalGenModelUri = URI.createFileURI(
-				"D:/projects/HiWiTVA/greenfield/MavenParent/AnimalMetamodel/src/main/resources/model/animal.genmodel"
-			);
-		URI modelGenModelURI = URI.createFileURI("D:/projects/HiWiTVA/greenfield/EcoreProjectCreation/AnimalMetamodel/src/main/resources/model/animal.genmodel");
-		
-		resourceSet.getURIConverter().getURIMap().put(
-		    modelGenModelURI,
-		    correctAnimalGenModelUri
-		);
-
-		// preload the referenced genmodel so the proxy resolves immediately
-		resourceSet.getResource(correctAnimalGenModelUri, true);
-		
-		// Add a plain file URI handler
-		resourceSet.getURIConverter().getURIHandlers().add(new org.eclipse.emf.ecore.resource.impl.URIHandlerImpl());
-		
-		URI correctAnimalModelUri = URI.createFileURI(
-				"D:/projects/HiWiTVA/greenfield/MavenParent/AnimalMetamodel/src/main/resources/model/animal.ecore"
-			);
-		URI modelURI = URI.createFileURI("D:/projects/HiWiTVA/greenfield/EcoreProjectCreation/AnimalMetamodel/src/main/resources/model/animal.ecore");
-		
-		resourceSet.getURIConverter().getURIMap().put(
-		    modelURI,
-		    correctAnimalModelUri
-		);*/
-		
-		//--- end try ---
 
 		URI ecoreUri = URI.createFileURI(absolutePathToModelFolder + "/" + config.modelName() + ".ecore");
 		resourceSet.getResource(ecoreUri, true);
@@ -166,31 +139,11 @@ public class CodeGenerator {
 		Resource genModelResource = resourceSet.getResource(genModelUri, true);
 		GenModel genModel = (GenModel) genModelResource.getContents().get(0);
 		
-		for (GenPackage gp : genModel.getUsedGenPackages()) {
-		    System.out.println("UsedGenPackage: " + gp.getNSURI());
-		    System.out.println("  isProxy: " + gp.eIsProxy());
-		    if (gp.eIsProxy()) {
-		        System.out.println("  Proxy URI: " + ((InternalEObject) gp).eProxyURI());
-		    } else {
-		        System.out.println("  GenModel: " + (gp.getGenModel() != null ? gp.getGenModel().eResource().getURI() : "null"));
-		    }
-		}
-		
 		EcoreUtil.resolveAll(genModel);
 		
 		//Configure genModel
 		genModel.reconcile();
 		genModel.setCanGenerate(true);
-		
-		for (GenPackage gp : genModel.getUsedGenPackages()) {
-		    System.out.println("UsedGenPackage: " + gp.getNSURI());
-		    System.out.println("  isProxy: " + gp.eIsProxy());
-		    if (gp.eIsProxy()) {
-		        System.out.println("  Proxy URI: " + ((InternalEObject) gp).eProxyURI());
-		    } else {
-		        System.out.println("  GenModel: " + (gp.getGenModel() != null ? gp.getGenModel().eResource().getURI() : "null"));
-		    }
-		}
 		
 		//Generate code
 		Generator generator = new Generator();
@@ -199,6 +152,7 @@ public class CodeGenerator {
 		if (config.generateModelCode()) {
 			System.out.println("=== Generating model code ===");
 			generator.generate(genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, new BasicMonitor.Printing(System.out));
+			//Trying to make the generated code a source folder for eclipse compatibility
 			try {
 				FileUtils.makeSrcFolderInProject(config.pathOfModelingProject(), FileUtils.extractLowestDirectory(genModel.getModelDirectory()));
 			} catch (Exception e) {

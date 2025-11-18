@@ -1,5 +1,5 @@
 {       
-	"pathToModelFolderFromGeneratingProject": "../GeneratedModelingProject/model",
+	"pathToModelFolderFromGeneratingProject": "../GreenField/EcampleTestProjects/GeneratedModelingProject/model",
 	"pathOfModelingProject": "../GeneratedModelingProject/",
 	"modelPluginID": "GeneratedModelingProject",
 	"modelName": "ecoreModelingProjectTemplate",
@@ -10,6 +10,6 @@
 	"usedGenPackages": [{
 		"modelName": "animal",
 		"pathToModelFolderFromGenModel": "../../AnimalMetamodel/src/main/resources/model",
-		"pathToModelFolderFromGeneratorProject": "../../MavenParent/AnimalMetamodel/src/main/resources/model"
+		"pathToModelFolderFromGeneratorProject": "../GreenField/ExampleTestProjects/MavenParent/AnimalMetamodel/src/main/resources/model"
 	}]
 }
